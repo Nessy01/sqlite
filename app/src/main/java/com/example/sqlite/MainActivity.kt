@@ -58,14 +58,14 @@ class MainActivity : AppCompatActivity() {
             // moving the cursor to first position and
             // appending value in the text view
             cursor!!.moveToFirst()
-            Name.append(cursor.getString(cursor.getColumnIndex(DB1.NAME_COl)) + "\n")
-            Age.append(cursor.getString(cursor.getColumnIndex(DB1.AGE_COL)) + "\n")
+            Name.append(cursor.getString(cursor.getColumnIndexOrThrow(DB1.NAME_COl)) + "\n")
+            Age.append(cursor.getString(cursor.getColumnIndexOrThrow(DB1.AGE_COL)) + "\n")
 
             // moving our cursor to next
             // position and appending values
             while(cursor.moveToNext()){
-                Name.append(cursor.getString(cursor.getColumnIndex(DB1.NAME_COl)) + "\n")
-                Age.append(cursor.getString(cursor.getColumnIndex(DB1.AGE_COL)) + "\n")
+                Name.append(cursor.getString(cursor.getColumnIndexOrThrow(DB1.NAME_COl)) + "\n")
+                Age.append(cursor.getString(cursor.getColumnIndexOrThrow(DB1.AGE_COL)) + "\n")
             }
 
             // at last we close our cursor

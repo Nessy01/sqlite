@@ -12,16 +12,11 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     companion object{
         private val DATABASE_NAME = "hello_there"
-
         private val DATABASE_VERSION = 1 //jak bede nastepne wesje to bedzie sie aktualizowac
-
-        val TABLE_NAME = "general_kenobi"
-
-        val ID_COL = "id"
-
-        val NAME_COl = "name"
-
-        val AGE_COL = "age"
+        const val TABLE_NAME = "general_kenobi"
+        const val ID_COL = "id"
+        const val NAME_COl = "name"
+        const val AGE_COL = "age"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -46,12 +41,12 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun addName(
         name : String,
-        age : Int) {
-
+        age : String) {
+        val db = this.writableDatabase // otwiera/tworzy baze do odczytu i zapisu
         val values = ContentValues()
         values.put(NAME_COl, name) //dodawanie wartosci
         values.put(AGE_COL, age)
-        val db = this.writableDatabase // otwiera/tworzy baze do odczytu i zapisu
+
         db.insert(TABLE_NAME, null, values) //nowy wiersz
         db.close() // zamyka bd
     }
