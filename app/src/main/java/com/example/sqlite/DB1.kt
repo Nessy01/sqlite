@@ -56,7 +56,7 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         db.close() // zamyka bd
     }
 
-    //
+    //zwroci wszystkie elementy tabeli
     fun getName(): Cursor? {
 
         val db = this.readableDatabase // Tworzy/otwiera bazę danych tylko do odczytu.
