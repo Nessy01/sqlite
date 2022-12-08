@@ -13,7 +13,7 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
     companion object{
         private val DATABASE_NAME = "hello_there"
 
-        private val DATABASE_VERSION = 1
+        private val DATABASE_VERSION = 1 //jak bede nastepne wesje to bedzie sie aktualizowac
 
         val TABLE_NAME = "general_kenobi"
 
@@ -43,9 +43,25 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
     }
+
     fun addName(
         name : String,
         age : Int) {
 
+        val values = ContentValues()
+        values.put(NAME_COl, name) //dodawanie wartosci
+        values.put(AGE_COL, age)
+        val db = this.writableDatabase // otwiera/tworzy baze do odczytu i zapisu
+        db.insert(TABLE_NAME, null, values) //nowy wiersz
+        db.close() // zamyka bd
+    }
+
+    //
+    fun getName(): Cursor? {
+
+        val db = this.readableDatabase // Tworzy/otwiera bazę danych tylko do odczytu.
+
+        //wykonuje zapytanie sql i zwraca obiekt cursor
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
     }
 }
