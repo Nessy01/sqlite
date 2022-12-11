@@ -12,7 +12,7 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     companion object{
         private val DATABASE_NAME = "hello_there"
-        private val DATABASE_VERSION = 1 //jak bede nastepne wesje to bedzie sie aktualizowac
+        private val DATABASE_VERSION = 1 //jeżeli chcemy zaktualizować tabele, trzeba zmienić wersje
         const val TABLE_NAME = "general_kenobi"
         const val ID_COL = "id"
         const val NAME_COl = "name"
