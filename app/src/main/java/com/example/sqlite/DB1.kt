@@ -12,28 +12,29 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     companion object{
         private val DATABASE_NAME = "hello_there"
-        private val DATABASE_VERSION = 1 //jeżeli chcemy zaktualizować tabele, trzeba zmienić wersje
+        private val DATABASE_VERSION = 2 //jeżeli chcemy zaktualizować tabele, trzeba zmienić wersje
         const val TABLE_NAME = "general_kenobi"
         const val ID_COL = "id"
-        const val NAME_COl = "name"
+        const val NAME_COL = "name"
         const val AGE_COL = "age"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val query = ("CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY, " +
-                NAME_COl + " TEXT," +
+                NAME_COL + " TEXT," +
                 AGE_COL + " TEXT" + ")")
 
         // we are calling sqlite
         // method for executing our query
         db.execSQL(query)
     }
+
     // checking if table already exists
     override fun onUpgrade(
         db: SQLiteDatabase,
-        p1: Int,
-        p2: Int) {
+        old: Int,
+        new: Int) {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
@@ -44,7 +45,7 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         age : String) {
         val db = this.writableDatabase // otwiera/tworzy baze do odczytu i zapisu
         val values = ContentValues()
-        values.put(NAME_COl, name) //dodawanie wartosci
+        values.put(NAME_COL, name) //dodawanie wartosci
         values.put(AGE_COL, age)
 
         db.insert(TABLE_NAME, null, values) //nowy wiersz
@@ -58,5 +59,12 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
         //wykonuje zapytanie sql i zwraca obiekt cursor
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+    }
+
+    fun delete(
+        name : String
+    ):Long {
+        val db = this.writableDatabase
+        val result=db.delete(TABLE_NAME, "")
     }
 }
