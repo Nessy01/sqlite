@@ -63,8 +63,10 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun delete(
         name : String
-    ):Long {
+    ):Int {
         val db = this.writableDatabase
-        val result=db.delete(TABLE_NAME, "")
+        val result=db.delete(TABLE_NAME, NAME_COL + "=?", arrayOf(name))
+        return result
     }
+
 }
