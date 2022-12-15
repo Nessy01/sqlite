@@ -24,13 +24,9 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
                 + ID_COL + " INTEGER PRIMARY KEY, " +
                 NAME_COL + " TEXT," +
                 AGE_COL + " TEXT" + ")")
-
-        // we are calling sqlite
-        // method for executing our query
         db.execSQL(query)
     }
 
-    // checking if table already exists
     override fun onUpgrade(
         db: SQLiteDatabase,
         old: Int,
@@ -52,7 +48,6 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         db.close() // zamyka bd
     }
 
-    //zwroci wszystkie elementy tabeli
     fun getName(): Cursor? {
 
         val db = this.readableDatabase // Tworzy/otwiera bazę danych tylko do odczytu.
@@ -61,12 +56,5 @@ class DB1 (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
     }
 
-    fun delete(
-        name : String
-    ):Int {
-        val db = this.writableDatabase
-        val result=db.delete(TABLE_NAME, NAME_COL + "=?", arrayOf(name))
-        return result
-    }
 
 }

@@ -62,22 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addName" />
 
-    <!-- Button to delete data -->
-
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@color/black"
-        android:text="Delete"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addName"
-        app:layout_constraintTop_toBottomOf="@+id/enterAge" />
-
-
     <!-- Text view to get all name -->
     <TextView
         android:id="@+id/Name"
